@@ -1,11 +1,14 @@
 
 .board__header {
     text-align: center;
+    letter-spacing: 0.5px;
 }
 
 .columnItem__box{
     width: 300px;
-    border: 1px solid black;
+    margin: 3px;
+    padding: 2px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .columns__container {
@@ -18,4 +21,5 @@
 .columnItem__header {
     font-size: 18px;
     font-weight: 600;
+    padding:7px 0px
 }
