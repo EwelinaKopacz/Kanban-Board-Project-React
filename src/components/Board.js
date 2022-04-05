@@ -3,7 +3,7 @@ import Columns from './Columns';
 
 const Board = function() {
     return <section>
-        <h1>React Kanban</h1>
+        <h1 className='board__header'>React Kanban</h1>
         <Columns/>
     </section>
 }

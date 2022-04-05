@@ -1,19 +1,19 @@
 import React,{ useContext } from 'react';
-import DataContext from '../context';
+import ColumnContext from '../context';
 import ColumnItem from './ColumnItem';
+import './styles.css'
 
 const Columns = function() {
-    const columns = useContext(DataContext)
-    console.log(columns);
+    const columns = useContext(ColumnContext)
 
     function renderColumns(){
-        return columns.map(item =>  
+        return columns.map(item =>
             <ColumnItem column={item} key={item.id}/>
         )
     }
 
     return (
-        <div>
+        <div className='columns__container'>
             {renderColumns()}
         </div>
     )

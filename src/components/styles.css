@@ -1,0 +1,21 @@
+
+.board__header {
+    text-align: center;
+}
+
+.columnItem__box{
+    width: 300px;
+    border: 1px solid black;
+}
+
+.columns__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.columnItem__header {
+    font-size: 18px;
+    font-weight: 600;
+}
