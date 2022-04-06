@@ -4,18 +4,18 @@
     letter-spacing: 0.5px;
 }
 
-.columnItem__box{
-    width: 300px;
-    margin: 3px;
-    padding: 2px;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-
-.columns__container {
+.board__columns {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+.columnItem__container{
+    width: 300px;
+    margin: 3px;
+    padding: 2px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .columnItem__header {
@@ -23,3 +23,40 @@
     font-weight: 600;
     padding:7px 0px
 }
+
+.task__container{
+    margin: 5px 10px;
+    border: 1px solid grey;
+}
+
+.form__section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin:10px 0px;
+}
+
+.input__box,.button__box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:5px 2px;
+    padding: 2px 5px;
+    min-width: 230px;
+}
+
+.input__task ,.input__person {
+    border:none;
+    border-bottom: 1px solid grey;
+}
+
+.button__submit{
+    border: none;
+    width: 100%;
+    min-height: 30px;
+    text-transform: uppercase;
+    margin:3px 0;
+
+}
+

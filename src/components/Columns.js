@@ -7,21 +7,14 @@ import './styles.css'
 const Columns = function() {
     const columns = useContext(ColumnContext)
     const tasks = useContext(TaskContext)
-    console.log(tasks);
-
 
     function checkTaskId(id){
-        const temp = tasks.map(task => {
+        return tasks.map(task => {
             if(task.idColumn === id){
-                console.log(task.idColumn);
-                console.log(id);
-                // return <Task task={task} key={task.id}/>
-                console.log(task)
-                return task
+                return <Task task={task} key={task.id}/>
             }
-            return task
+            return null
         })
-        return <Task task={temp} key={temp.id}/>
     }
 
     function renderColumns(){
@@ -33,7 +26,7 @@ const Columns = function() {
     }
 
     return (
-        <div className='columns__container'>
+        <div className='board__columns'>
             {renderColumns()}
         </div>
     )
