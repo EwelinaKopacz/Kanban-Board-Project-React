@@ -1,5 +1,6 @@
 import React from "react";
 
-const DataContext = React.createContext();
+const ColumnContext = React.createContext();
+const TaskContext = React.createContext();
 
-export default DataContext;
+export {ColumnContext, TaskContext};
