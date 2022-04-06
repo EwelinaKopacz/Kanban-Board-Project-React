@@ -23,10 +23,34 @@ const App = function() {
         localStorage.setItem('items', JSON.stringify(items))
     },[items])
 
+    function moveToNext(taskId){
+        console.log('taskid przekazany do f-cji:', taskId);
+        items.filter(item => {
+            if(item.id === taskId){
+                console.log('task ktory sie zgadza z klikniętym:', item);
+                console.log('itemid kliknietego task:', item.id);
+                console.log('itemidColumn kliknietego task:', item.idColumn);
+                setItem(items => ([
+                    ...items,
+                    item.idColumn +1
+                ])
+                )
+            }
+        })
+    }
+    console.log('stan po wywolaniu f-cji', items);
+
+    // eslint-disable-next-line react/jsx-no-constructed-context-values
+    const taskProviderValues = {
+        items,
+        moveToNext
+    }
+
+
     return(
         <>
             <ColumnContext.Provider value={columns}>
-                <TaskContext.Provider value={items}>
+                <TaskContext.Provider value={taskProviderValues}>
                     <Board/>
                 </TaskContext.Provider>
             </ColumnContext.Provider>

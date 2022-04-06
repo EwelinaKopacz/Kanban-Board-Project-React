@@ -6,12 +6,16 @@ import './styles.css'
 
 const Columns = function() {
     const columns = useContext(ColumnContext)
-    const tasks = useContext(TaskContext)
+    const items = useContext(TaskContext)
+
+    const listOfTask = items.items;
+    console.log(listOfTask);
+    const moveToNextFn = items.moveToNext;
 
     function checkTaskId(id){
-        return tasks.map(task => {
+        return listOfTask.map(task => {
             if(task.idColumn === id){
-                return <Task task={task} key={task.id}/>
+                return <Task task={task} key={task.id} moveToNext={moveToNextFn}/>
             }
             return null
         })
