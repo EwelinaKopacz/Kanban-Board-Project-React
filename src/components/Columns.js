@@ -8,14 +8,15 @@ const Columns = function() {
     const columns = useContext(ColumnContext)
     const items = useContext(TaskContext)
 
-    const listOfTask = items.items;
-    console.log(listOfTask);
+    const listOfTask = items.tasks;
     const moveToNextFn = items.moveToNext;
+    const moveToPrevFn = items.moveToPrev;
 
-    function checkTaskId(id){
+    function checkTaskId(item){
+        const {id,limit}= item;
         return listOfTask.map(task => {
             if(task.idColumn === id){
-                return <Task task={task} key={task.id} moveToNext={moveToNextFn}/>
+                return <Task task={task} key={task.id} moveToNext={moveToNextFn} moveToPrev={moveToPrevFn} limit={limit}/>
             }
             return null
         })
@@ -24,7 +25,7 @@ const Columns = function() {
     function renderColumns(){
         return columns.map(item =>
             <ColumnItem column={item} key={item.id}>
-                {checkTaskId(item.id)}
+                {checkTaskId(item)}
             </ColumnItem>
         )
     }

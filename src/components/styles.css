@@ -13,6 +13,7 @@
 
 .columnItem__container{
     width: 300px;
+    height: 650px;
     margin: 3px;
     padding: 2px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -61,5 +62,9 @@
 }
 
 .task__button{
+    height: 30px;
+    width: 100px;
     margin:4px;
+    border: none;
+    padding:5px
 }

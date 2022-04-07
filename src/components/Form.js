@@ -1,24 +1,70 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState,useReducer,useContext} from 'react';
+import {FormContext} from '../context';
 import './styles.css'
 
+const initialState = {
+    taskName:'',
+    user:'',
+}
+
+const reducer = (state,action) => {
+    const {type, value} = action;
+    if(type === 'resetInputs'){
+        return value
+    }
+    return {...state, [type]:value}
+}
+
 const Form = function(){
+    const [state, dispatch] = useReducer(reducer,initialState);
+    const [isValid, setIsValid] = useState(false);
+    const {taskName, user} = state;
+    const item = useContext(FormContext);
+    const {addNewTask} = item
+
+    function handleChange(e) {
+        const action = {
+            type: e.target.name,
+            value: e.target.value
+        }
+        dispatch(action)
+    }
+
+    function resetInputs(){
+        const action = {
+            type: 'resetInputs',
+            value: initialState
+        }
+        dispatch(action)
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        if(taskName && user) {
+            setIsValid(true)
+            addNewTask(state);
+            resetInputs()
+        }
+        return null
+    }
 
     return(
         <section className='form__section'>
             <h2>Add task</h2>
             <form className='form__container'>
+                {isValid ? <div>Task was added!</div>: null}
                 <div className='input__box'>
-                    <label> Task: </label>
-                    <input type='text' className='input__task' />
+                    <label htmlFor="task-id" > Task: </label>
+                    <input id="task-id" type='text' className='input__task' name="taskName" value={taskName} onChange={handleChange}/>
                 </div>
 
                 <div className='input__box'>
-                    <label> Person: </label>
-                    <input type='text' className='input__person' />
+                    <label htmlFor="person-id"> Person: </label>
+                    <input id="person-id" type='text' className='input__person' name="user" value={user} onChange={handleChange} />
                 </div>
 
                 <div className='button__box'>
-                    <button type='button' className='button__submit'> Submit </button>
+                    <button type='submit' className='button__submit' onClick={handleSubmit}> Submit </button>
                 </div>
             </form>
         </section>

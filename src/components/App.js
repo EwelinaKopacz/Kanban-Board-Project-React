@@ -1,51 +1,89 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
+/* eslint-disable no-undef */
 import React, {useState,useEffect} from 'react';
 import Board from './Board';
-import {ColumnContext, TaskContext} from '../context';
+import {ColumnContext, TaskContext, FormContext} from '../context';
 import Form from './Form';
 
 const App = function() {
 
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
     const columns = ([
-        {id:1, columnName:'TO DO', limit: 6},
-        {id:2, columnName:'DOING', limit: 3},
+        {id:1, columnName:'TO DO', limit: 4},
+        {id:2, columnName:'DOING', limit: 2},
         {id:3, columnName:'DONE', limit: 3},
     ])
 
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
-    const [items,setItem] = useState ([
+    const [tasks,setTasks] = useState ([
         {id:1,taskName:'check Email', user:'Kamil',idColumn:1},
         {id:2,taskName:'send Email', user:'Kasia',idColumn:2},
         {id:3,taskName:'call Customer', user:'Asia',idColumn:3},
+        {id:4,taskName:'call CEO', user:'Iwona',idColumn:3},
     ])
 
     useEffect(()=> {
-        localStorage.setItem('items', JSON.stringify(items))
-    },[items])
+        const data = localStorage.getItem("tasks");
+        if(data){
+            setTasks(JSON.parse(data));
+        }
+    },[])
 
-    function moveToNext(taskId){
-        console.log('taskid przekazany do f-cji:', taskId);
-        items.filter(item => {
-            if(item.id === taskId){
-                console.log('task ktory sie zgadza z klikniętym:', item);
-                console.log('itemid kliknietego task:', item.id);
-                console.log('itemidColumn kliknietego task:', item.idColumn);
-                setItem(items => ([
-                    ...items,
-                    item.idColumn +1
-                ])
-                )
+    useEffect(()=> {
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    },[tasks])
+
+    function moveToNext(taskId,columnId){
+        const newItem = tasks.map(item => {
+            if(item.id === taskId && columnId < 3){
+                return {...item, idColumn:item.idColumn + 1};
             }
+            return item;
         })
+        setTasks(newItem)
     }
-    console.log('stan po wywolaniu f-cji', items);
 
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
+    // spr limitu nie działa, mam limit obecnej kolumn, a potrzebny mi limit w tym wypadku poprzedniej
+    function moveToPrev(taskId,columnId,limit){
+        const getTasks = localStorage.getItem('tasks');
+        const getTasksInFormat = JSON.parse(getTasks)
+        const columnCheck = getTasksInFormat.filter(item => item.idColumn === columnId - 1)
+
+        console.log('Limit kolumny z ktorej przenosimy taska',limit);
+        console.log(columnCheck);
+        console.log('ilosc tasków w poprzedniej kolumnie:', columnCheck.length);
+
+        const newItem = tasks.map(item => {
+            if(item.id === taskId && columnId > 1 ){ // && columnCheck.length < limit
+                return {...item, idColumn:item.idColumn - 1};
+            }
+            return item;
+        })
+        setTasks(newItem)
+    }
+
+    // brakuje wywołania, aby po dodaniu pojawiło sie na tablicy, a nie dopiero po odświezeniu
+    // przydałoby sie sprawdzanie czy mozna dodac kolejny task - limit - z tym mam problem
+    function addNewTask(task){
+        const data = JSON.parse(localStorage.getItem("tasks"));
+        const largestId = data.map(item => item.id).sort((a,b)=> a-b)[data.length-1]
+        const nextId = largestId +1;
+
+        // zakładam ze kady nowy task jest na liście oczekującej (czyli kolumna 1)
+        const {taskName,user} = task;
+        const newTask = {id:nextId,taskName,user,idColumn:1};
+
+        data.push(newTask)
+        localStorage.setItem('tasks', JSON.stringify(data));
+    }
+
     const taskProviderValues = {
-        items,
-        moveToNext
+        tasks,
+        moveToNext,
+        moveToPrev
     }
 
+    const formProviderValues = {
+        addNewTask,
+    }
 
     return(
         <>
@@ -54,7 +92,9 @@ const App = function() {
                     <Board/>
                 </TaskContext.Provider>
             </ColumnContext.Provider>
-            <Form/>
+            <FormContext.Provider value={formProviderValues}>
+                <Form />
+            </FormContext.Provider>
         </>
     )
 }
