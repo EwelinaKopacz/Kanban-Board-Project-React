@@ -29,9 +29,10 @@ const Columns = function() {
             </ColumnItem>
         )
     }
+    // redneruje kolumny, same kolumny?
 
     return (
-        <div className='board__columns'>
+        <div className='columns__section'>
             {renderColumns()}
         </div>
     )

@@ -1,14 +1,25 @@
 import React from 'react';
-import Columns from './Columns';
-import './styles.css'
+import PropTypes from 'prop-types';
+import './styles.css';
 
-const Board = function() {
+const Board = function(props) {
+    const {left,right} = props;
     return (
-        <section className='board__container'>
+        <section className="board__container">
             <h1 className='board__header'>React Kanban</h1>
-            <Columns/>
+            <div className="board__leftSide">
+                {left}
+            </div>
+            <div className="board__rightSide">
+                {right}
+            </div>
         </section>
-    )
+    );
+}
+
+Board.propTypes = {
+    left: PropTypes.element.isRequired,
+    right: PropTypes.element.isRequired,
 }
 
 export default Board;

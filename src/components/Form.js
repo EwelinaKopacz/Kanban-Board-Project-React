@@ -1,6 +1,6 @@
 import React, {useState,useReducer,useContext} from 'react';
 import {FormContext} from '../context';
-import './styles.css'
+import './styles.css';
 
 const initialState = {
     taskName:'',
@@ -15,7 +15,8 @@ const reducer = (state,action) => {
     return {...state, [type]:value}
 }
 
-const Form = function(){
+const Form = function () {
+
     const [state, dispatch] = useReducer(reducer,initialState);
     const [isValid, setIsValid] = useState(false);
     const {taskName, user} = state;
@@ -48,8 +49,8 @@ const Form = function(){
         return null
     }
 
-    return(
-        <section className='form__section'>
+    return (
+        <div className="form__section">
             <h2>Add task</h2>
             <form className='form__container'>
                 {isValid ? <div>Task was added!</div>: null}
@@ -67,7 +68,7 @@ const Form = function(){
                     <button type='submit' className='button__submit' onClick={handleSubmit}> Submit </button>
                 </div>
             </form>
-        </section>
+        </div>
     )
 }
 
