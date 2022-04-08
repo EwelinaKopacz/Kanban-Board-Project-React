@@ -6,6 +6,7 @@ const ColumnItem = function(props) {
     const {column} = props
     const {columnName,limit} = column;
     const {children} = props;
+
     return (
         <div className='columnItem__container'>
             <div className='columnItem__head'>
@@ -19,11 +20,11 @@ const ColumnItem = function(props) {
     )
 }
 
-ColumnItem.propTypes = {
-    column: PropTypes.element.isRequired,
-    columnName: PropTypes.string.isRequired,
-    limit: PropTypes.number.isRequired,
-    children: PropTypes.element.isRequired
-}
+// ColumnItem.propTypes = {
+//     column: PropTypes.element.isRequired,
+//     columnName: PropTypes.string.isRequired,
+//     limit: PropTypes.number.isRequired,
+//     children: PropTypes.element.isRequired
+// }
 
 export default ColumnItem;

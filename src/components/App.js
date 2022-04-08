@@ -40,13 +40,13 @@ const App = function() {
 
     // spr limitu nie działa, mam limit obecnej kolumn, a potrzebny mi limit w tym wypadku poprzedniej
     function moveToPrev(taskId,columnId,limit){
-        const getTasks = localStorage.getItem('tasks');
-        const getTasksInFormat = JSON.parse(getTasks)
-        const columnCheck = getTasksInFormat.filter(item => item.idColumn === columnId - 1)
+        console.log(limit);
+        const getTasks = JSON.parse(localStorage.getItem('tasks'))
+        const columnCheck = getTasks.filter(item => item.idColumn === columnId - 1)
 
         console.log('Limit kolumny z ktorej przenosimy taska',limit);
         console.log(columnCheck);
-        console.log('ilosc tasków w poprzedniej kolumnie:', columnCheck.length);
+        console.log('ilosc tasków w poprzedniej kolumnie:', columnCheck.length);// pokazuje jedną za mało
 
         const newItem = tasks.map(item => {
             if(item.id === taskId && columnId > 1 ){ // && columnCheck.length < limit
@@ -57,8 +57,18 @@ const App = function() {
         setTasks(newItem)
     }
 
+    function checkTaskNumber(){
+        const data = JSON.parse(localStorage.getItem("tasks"));
+        const column1Lenght = data.filter(item => item.idColumn === 1); // pokazuje 1 mniej bo znow brak odwiezenia
+        console.log(column1Lenght.length);
+        if(column1Lenght.length < 4){
+            return true
+        }
+        return false
+    }
+
+    // dodac tez usuwanie taksów
     // brakuje wywołania, aby po dodaniu pojawiło sie na tablicy, a nie dopiero po odświezeniu
-    // przydałoby sie sprawdzanie czy mozna dodac kolejny task - limit - z tym mam problem, brakuje mi pomysłu jak to zrobić
     function addNewTask(task){
         const data = JSON.parse(localStorage.getItem("tasks"));
         const largestId = data.map(item => item.id).sort((a,b)=> a-b)[data.length-1]
@@ -68,8 +78,11 @@ const App = function() {
         const {taskName,user} = task;
         const newTask = {id:nextId,taskName,user,idColumn:1};
 
-        data.push(newTask)
-        localStorage.setItem('tasks', JSON.stringify(data));
+        if(checkTaskNumber()){
+            data.push(newTask)
+            localStorage.setItem('tasks', JSON.stringify(data));
+        }
+        else alert('Max limit TASK in TO DO list = 4');
     }
 
     const columns = ([
