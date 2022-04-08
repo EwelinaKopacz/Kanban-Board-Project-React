@@ -18,12 +18,12 @@ const Task = function(props){
 }
 
 Task.propTypes = {
-    task:PropTypes.element.isRequired,
-    taskName: PropTypes.string.isRequired,
-    user: PropTypes.string.isRequired,
-    id:PropTypes.number.isRequired,
-    idColumn:PropTypes.number.isRequired,
-    limit:PropTypes.number.isRequired,
+    // task:PropTypes.element.isRequired,
+    // taskName: PropTypes.string.,
+    // user: PropTypes.string.isRequired,
+    // id:PropTypes.number.isRequired,
+    // idColumn:PropTypes.number.isRequired,
+    // limit:PropTypes.number.isRequired,
     moveToNext:PropTypes.func.isRequired,
     moveToPrev:PropTypes.func.isRequired
 }

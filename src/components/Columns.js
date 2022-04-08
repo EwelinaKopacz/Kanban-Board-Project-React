@@ -29,7 +29,6 @@ const Columns = function() {
             </ColumnItem>
         )
     }
-    // redneruje kolumny, same kolumny?
 
     return (
         <div className='columns__section'>
