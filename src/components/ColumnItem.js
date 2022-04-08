@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import './styles.css'
 
 const ColumnItem = function(props) {
-    const {columnName,limit} = props.column;
+    const {column} = props
+    const {columnName,limit} = column;
     const {children} = props;
     return (
         <div className='columnItem__container'>
@@ -17,7 +18,9 @@ const ColumnItem = function(props) {
         </div>
     )
 }
+
 ColumnItem.propTypes = {
+    column: PropTypes.element.isRequired,
     columnName: PropTypes.string.isRequired,
     limit: PropTypes.number.isRequired,
     children: PropTypes.element.isRequired

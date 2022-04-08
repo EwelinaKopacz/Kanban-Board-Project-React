@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import './styles.css'
 
 const Task = function(props){
-    const {taskName,user,id,idColumn,moveToNext,moveToPrev,limit} = props;
+    const {task} = props;
+    const {taskName,user,id,idColumn,limit} = task;
+    const {moveToNext,moveToPrev} = props
 
     return(
         <div className='task__container'>
@@ -16,6 +18,7 @@ const Task = function(props){
 }
 
 Task.propTypes = {
+    task:PropTypes.element.isRequired,
     taskName: PropTypes.string.isRequired,
     user: PropTypes.string.isRequired,
     id:PropTypes.number.isRequired,
