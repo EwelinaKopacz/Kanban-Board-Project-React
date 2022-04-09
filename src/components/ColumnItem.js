@@ -19,11 +19,11 @@ const ColumnItem = function(props) {
     )
 }
 
-// ColumnItem.propTypes = {
-//     column: PropTypes.element.isRequired,
-//     columnName: PropTypes.string.isRequired,
-//     limit: PropTypes.number.isRequired,
-//     children: PropTypes.element.isRequired
-// }
+ColumnItem.propTypes = {
+    // column: PropTypes.node.isRequired,
+    // columnName: PropTypes.string.isRequired,
+    // limit: PropTypes.number.isRequired,
+    // children: PropTypes.node.isRequired
+}
 
 export default ColumnItem;

@@ -80,6 +80,11 @@
     margin:3px 0;
 }
 
+.button__submit:hover{
+    background-color: rgb(21, 124, 30);
+    color: white;
+}
+
 .task__move{
     height: 30px;
     width: 100px;
@@ -92,5 +97,18 @@
     height: 30px;
     width: 208px;
     border: none;
+}
 
+.task__content{
+    font-weight: 600;
+}
+
+.task__move:hover {
+    background-color: black;
+    color: white;
+}
+
+.task__remove:hover{
+    background-color: rgb(165, 44, 44);
+    color: white;
 }
