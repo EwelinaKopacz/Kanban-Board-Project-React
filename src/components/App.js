@@ -26,8 +26,6 @@ const App = function() {
         window.localStorage.setItem('tasks', JSON.stringify(tasks));
     },[tasks])
 
-
-
     function moveToNext(taskId,columnId){
         const newItem = tasks.map(item => {
             if(item.id === taskId && columnId < 3){
@@ -84,11 +82,10 @@ const App = function() {
         else alert('Max limit TASK in TO DO list = 4');
     }
 
+    // mam problem z tym useEffect po zmianach w tablicy
     function removeTask(id){
-        console.log(id);
         const data = JSON.parse(window.localStorage.getItem("tasks"));
         const updateTasks = data.filter(item => item.id !== id);
-
         window.localStorage.setItem('tasks', JSON.stringify(updateTasks));
     }
 
