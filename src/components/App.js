@@ -117,7 +117,6 @@ const App = function() {
     }
 
     return (
-
         <Board
             left={
                 <FormContext.Provider value={formProviderValues}>
