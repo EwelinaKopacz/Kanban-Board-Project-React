@@ -11,12 +11,20 @@ const Columns = function() {
     const listOfTask = items.tasks;
     const moveToNextFn = items.moveToNext;
     const moveToPrevFn = items.moveToPrev;
+    const removeTaskFn = items.removeTask;
 
     function checkTaskId(item){
         const {id,limit}= item;
         return listOfTask.map(task => {
             if(task.idColumn === id){
-                return <Task task={task} key={task.id} moveToNext={moveToNextFn} moveToPrev={moveToPrevFn} limit={limit}/>
+                return <Task
+                    task={task}
+                    key={task.id}
+                    moveToNext={moveToNextFn}
+                    moveToPrev={moveToPrevFn}
+                    removeTask={removeTaskFn}
+                    limit={limit}
+                />
             }
             return null
         })

@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React, {useState,useEffect} from 'react';
 import {ColumnContext, TaskContext, FormContext} from '../context';
@@ -17,15 +16,16 @@ const App = function() {
     ])
 
     useEffect(()=> {
-        const data = localStorage.getItem("tasks");
+        const data = window.localStorage.getItem("tasks");
         if(data){
             setTasks(JSON.parse(data));
         }
     },[])
 
     useEffect(()=> {
-        localStorage.setItem('tasks', JSON.stringify(tasks));
+        window.localStorage.setItem('tasks', JSON.stringify(tasks));
     },[tasks])
+
 
 
     function moveToNext(taskId,columnId){
@@ -41,7 +41,7 @@ const App = function() {
     // spr limitu nie działa, mam limit obecnej kolumn, a potrzebny mi limit w tym wypadku poprzedniej
     function moveToPrev(taskId,columnId,limit){
         console.log(limit);
-        const getTasks = JSON.parse(localStorage.getItem('tasks'))
+        const getTasks = JSON.parse(window.localStorage.getItem('tasks'))
         const columnCheck = getTasks.filter(item => item.idColumn === columnId - 1)
 
         console.log('Limit kolumny z ktorej przenosimy taska',limit);
@@ -58,7 +58,7 @@ const App = function() {
     }
 
     function checkTaskNumber(){
-        const data = JSON.parse(localStorage.getItem("tasks"));
+        const data = JSON.parse(window.localStorage.getItem("tasks"));
         const column1Lenght = data.filter(item => item.idColumn === 1); // pokazuje 1 mniej bo znow brak odwiezenia
         console.log(column1Lenght.length);
         if(column1Lenght.length < 4){
@@ -67,10 +67,9 @@ const App = function() {
         return false
     }
 
-    // dodac tez usuwanie taksów
     // brakuje wywołania, aby po dodaniu pojawiło sie na tablicy, a nie dopiero po odświezeniu
     function addNewTask(task){
-        const data = JSON.parse(localStorage.getItem("tasks"));
+        const data = JSON.parse(window.localStorage.getItem("tasks"));
         const largestId = data.map(item => item.id).sort((a,b)=> a-b)[data.length-1]
         const nextId = largestId +1;
 
@@ -80,9 +79,17 @@ const App = function() {
 
         if(checkTaskNumber()){
             data.push(newTask)
-            localStorage.setItem('tasks', JSON.stringify(data));
+            window.localStorage.setItem('tasks', JSON.stringify(data));
         }
         else alert('Max limit TASK in TO DO list = 4');
+    }
+
+    function removeTask(id){
+        console.log(id);
+        const data = JSON.parse(window.localStorage.getItem("tasks"));
+        const updateTasks = data.filter(item => item.id !== id);
+
+        window.localStorage.setItem('tasks', JSON.stringify(updateTasks));
     }
 
     const columns = ([
@@ -94,7 +101,8 @@ const App = function() {
     const taskProviderValues = {
         tasks,
         moveToNext,
-        moveToPrev
+        moveToPrev,
+        removeTask
     }
 
     const formProviderValues = {

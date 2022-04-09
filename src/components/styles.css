@@ -80,10 +80,17 @@
     margin:3px 0;
 }
 
-.task__button{
+.task__move{
     height: 30px;
     width: 100px;
     margin:4px;
     border: none;
     padding:5px
+}
+
+.task__remove{
+    height: 30px;
+    width: 208px;
+    border: none;
+
 }
