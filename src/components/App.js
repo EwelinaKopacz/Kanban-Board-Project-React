@@ -10,9 +10,8 @@ import './styles.css';
 const App = function() {
     const [tasks,setTasks] = useState ([
         {id:1,taskName:'check Email', user:'Kamil',idColumn:1},
-        {id:2,taskName:'send Email', user:'Kasia',idColumn:2},
+        {id:2,taskName:'send Mail', user:'Kasia',idColumn:2},
         {id:3,taskName:'call Customer', user:'Asia',idColumn:3},
-        {id:4,taskName:'call CEO', user:'Iwona',idColumn:3},
     ])
 
     useEffect(()=> {

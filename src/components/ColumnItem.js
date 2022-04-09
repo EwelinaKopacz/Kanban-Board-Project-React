@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import './styles.css'
 
 const ColumnItem = function(props) {
-    const {column} = props
+    const {column,children} = props
     const {columnName,limit} = column;
-    const {children} = props;
 
     return (
         <div className='columnItem__container'>

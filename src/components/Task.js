@@ -1,21 +1,26 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import PropTypes from 'prop-types';
+import {TaskContext} from '../context';
 import './styles.css'
 
 const Task = function(props){
-    const {task} = props;
+    const {task,limit} = props;
     const {taskName,user,id,idColumn} = task;
-    const {moveToNext,moveToPrev, removeTask, limit} = props
+
+    const items = useContext(TaskContext)
+    const moveToNextFn = items.moveToNext;
+    const moveToPrevFn = items.moveToPrev;
+    const removeTaskFn = items.removeTask;
 
     // tutaj tez mozna rozbić button na komponent
     return(
         <div className='task__container'>
             <p className='task__content'>Task: {taskName} </p>
             <p className='task__user'>Responsible: {user} </p>
-            <button type='button' className='task__move' onClick={() => moveToPrev(id,idColumn,limit)}> Move to Prev </button>
-            <button type='button' className='task__move' onClick={() => moveToNext(id,idColumn,limit)}> Move to Next </button>
+            <button type='button' className='task__move' onClick={() => moveToPrevFn(id,idColumn,limit)}> Move to Prev </button>
+            <button type='button' className='task__move' onClick={() => moveToNextFn(id,idColumn,limit)}> Move to Next </button>
             <div className='button_box'>
-                <button type= 'button' className='task__remove'onClick={() => removeTask(id)}> Remove </button>
+                <button type= 'button' className='task__remove'onClick={() => removeTaskFn(id)}> Remove </button>
             </div>
         </div>
     )
@@ -28,9 +33,6 @@ Task.propTypes = {
     // id:PropTypes.number.isRequired,
     // idColumn:PropTypes.number.isRequired,
     // limit:PropTypes.number.isRequired,
-    moveToNext:PropTypes.func.isRequired,
-    moveToPrev:PropTypes.func.isRequired,
-    removeTask:PropTypes.func.isRequired
 }
 
 export default Task;

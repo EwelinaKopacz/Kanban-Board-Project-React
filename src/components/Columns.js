@@ -7,11 +7,7 @@ import './styles.css'
 const Columns = function() {
     const columns = useContext(ColumnContext)
     const items = useContext(TaskContext)
-
     const listOfTask = items.tasks;
-    const moveToNextFn = items.moveToNext;
-    const moveToPrevFn = items.moveToPrev;
-    const removeTaskFn = items.removeTask;
 
     function checkTaskId(item){
         const {id,limit}= item;
@@ -20,9 +16,6 @@ const Columns = function() {
                 return <Task
                     task={task}
                     key={task.id}
-                    moveToNext={moveToNextFn}
-                    moveToPrev={moveToPrevFn}
-                    removeTask={removeTaskFn}
                     limit={limit}
                 />
             }
