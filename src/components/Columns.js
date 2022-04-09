@@ -10,13 +10,12 @@ const Columns = function() {
     const listOfTask = items.tasks;
 
     function checkTaskId(item){
-        const {id,limit}= item;
+        const {id}= item;
         return listOfTask.map(task => {
             if(task.idColumn === id){
                 return <Task
                     task={task}
                     key={task.id}
-                    limit={limit}
                 />
             }
             return null

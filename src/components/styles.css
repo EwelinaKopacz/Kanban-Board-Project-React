@@ -72,6 +72,17 @@
     border-bottom: 1px solid grey;
 }
 
+.form__confirm {
+    width:100%;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 600;
+    color:rgb(148, 84, 24);
+    background-color: antiquewhite;
+    padding:5px 0px;
+
+}
+
 .button__submit{
     border: none;
     width: 100%;

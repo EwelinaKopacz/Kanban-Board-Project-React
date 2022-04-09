@@ -8,6 +8,13 @@ import Columns from './Columns'
 import './styles.css';
 
 const App = function() {
+
+    const columns = ([
+        {id:1, columnName:'TO DO', limit: 4},
+        {id:2, columnName:'DOING', limit: 2},
+        {id:3, columnName:'DONE', limit: 3},
+    ])
+
     const [tasks,setTasks] = useState ([
         {id:1,taskName:'check Email', user:'Kamil',idColumn:1},
         {id:2,taskName:'send Mail', user:'Kasia',idColumn:2},
@@ -19,13 +26,25 @@ const App = function() {
         if(data){
             setTasks(JSON.parse(data));
         }
+        else setTasks(tasks)
     },[])
 
     useEffect(()=> {
         window.localStorage.setItem('tasks', JSON.stringify(tasks));
     },[tasks])
 
+
+    function checkNextLimit(columnId){
+        const findColumn = columnId + 1;
+        const checkLimit = columns.filter(item => item.id === findColumn).map(item => item.limit);
+        console.log(checkLimit);
+
+        
+
+    }
+
     function moveToNext(taskId,columnId){
+        checkNextLimit(columnId)
         const newItem = tasks.map(item => {
             if(item.id === taskId && columnId < 3){
                 return {...item, idColumn:item.idColumn + 1};
@@ -35,18 +54,9 @@ const App = function() {
         setTasks(newItem)
     }
 
-    // spr limitu nie działa, mam limit obecnej kolumn, a potrzebny mi limit w tym wypadku poprzedniej
-    function moveToPrev(taskId,columnId,limit){
-        console.log(limit);
-        const getTasks = JSON.parse(window.localStorage.getItem('tasks'))
-        const columnCheck = getTasks.filter(item => item.idColumn === columnId - 1)
-
-        console.log('Limit kolumny z ktorej przenosimy taska',limit);
-        console.log(columnCheck);
-        console.log('ilosc tasków w poprzedniej kolumnie:', columnCheck.length);// pokazuje jedną za mało
-
+    function moveToPrev(taskId,columnId){
         const newItem = tasks.map(item => {
-            if(item.id === taskId && columnId > 1 ){ // && columnCheck.length < limit
+            if(item.id === taskId && columnId > 1 ){
                 return {...item, idColumn:item.idColumn - 1};
             }
             return item;
@@ -54,17 +64,15 @@ const App = function() {
         setTasks(newItem)
     }
 
-    function checkTaskNumber(){
+    function checkTaskLenght(){
         const data = JSON.parse(window.localStorage.getItem("tasks"));
-        const column1Lenght = data.filter(item => item.idColumn === 1); // pokazuje 1 mniej bo znow brak odwiezenia
-        console.log(column1Lenght.length);
+        const column1Lenght = data.filter(item => item.idColumn === 1);
         if(column1Lenght.length < 4){
             return true
         }
         return false
     }
 
-    // brakuje wywołania, aby po dodaniu pojawiło sie na tablicy, a nie dopiero po odświezeniu
     function addNewTask(task){
         const data = JSON.parse(window.localStorage.getItem("tasks"));
         const largestId = data.map(item => item.id).sort((a,b)=> a-b)[data.length-1]
@@ -74,25 +82,18 @@ const App = function() {
         const {taskName,user} = task;
         const newTask = {id:nextId,taskName,user,idColumn:1};
 
-        if(checkTaskNumber()){
+        if(checkTaskLenght()){
             data.push(newTask)
-            window.localStorage.setItem('tasks', JSON.stringify(data));
+            setTasks(data)
         }
         else alert('Max limit TASK in TO DO list = 4');
     }
 
-    // mam problem z tym useEffect po zmianach w tablicy
-    function removeTask(id){
+    function removeTask(id){ // brak potwierdzenia czy chce usunac taska 
         const data = JSON.parse(window.localStorage.getItem("tasks"));
         const updateTasks = data.filter(item => item.id !== id);
-        window.localStorage.setItem('tasks', JSON.stringify(updateTasks));
+        setTasks(updateTasks)
     }
-
-    const columns = ([
-        {id:1, columnName:'TO DO', limit: 4},
-        {id:2, columnName:'DOING', limit: 2},
-        {id:3, columnName:'DONE', limit: 3},
-    ])
 
     const taskProviderValues = {
         tasks,

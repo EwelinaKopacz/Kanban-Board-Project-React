@@ -4,7 +4,7 @@ import {TaskContext} from '../context';
 import './styles.css'
 
 const Task = function(props){
-    const {task,limit} = props;
+    const {task} = props;
     const {taskName,user,id,idColumn} = task;
 
     const items = useContext(TaskContext)
@@ -17,8 +17,8 @@ const Task = function(props){
         <div className='task__container'>
             <p className='task__content'>Task: {taskName} </p>
             <p className='task__user'>Responsible: {user} </p>
-            <button type='button' className='task__move' onClick={() => moveToPrevFn(id,idColumn,limit)}> Move to Prev </button>
-            <button type='button' className='task__move' onClick={() => moveToNextFn(id,idColumn,limit)}> Move to Next </button>
+            <button type='button' className='task__move' onClick={() => moveToPrevFn(id,idColumn)}> Move to Prev </button>
+            <button type='button' className='task__move' onClick={() => moveToNextFn(id,idColumn)}> Move to Next </button>
             <div className='button_box'>
                 <button type='button' className='task__remove'onClick={() => removeTaskFn(id)}> Remove </button>
             </div>
@@ -32,7 +32,6 @@ Task.propTypes = {
     // user: PropTypes.string.isRequired,
     // id:PropTypes.number.isRequired,
     // idColumn:PropTypes.number.isRequired,
-    // limit:PropTypes.number.isRequired,
 }
 
 export default Task;
