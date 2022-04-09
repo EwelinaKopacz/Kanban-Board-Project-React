@@ -19,6 +19,9 @@ const App = function() {
         {id:1,taskName:'check Email', user:'Kamil',idColumn:1},
         {id:2,taskName:'send Mail', user:'Kasia',idColumn:2},
         {id:3,taskName:'call Customer', user:'Asia',idColumn:3},
+        {id:4,taskName:'check Email', user:'Kamil',idColumn:1},
+        {id:5,taskName:'check Email', user:'Kamil',idColumn:1},
+        {id:6,taskName:'check Email', user:'Kamil',idColumn:1},
     ])
 
     useEffect(()=> {
@@ -33,35 +36,42 @@ const App = function() {
         window.localStorage.setItem('tasks', JSON.stringify(tasks));
     },[tasks])
 
+    function checkTaskLimit(columnId){
+        const checkLimit = columns.filter(item => item.id === columnId).map(item => item.limit);
+        const limitNumber = checkLimit[0]
 
-    function checkNextLimit(columnId){
-        const findColumn = columnId + 1;
-        const checkLimit = columns.filter(item => item.id === findColumn).map(item => item.limit);
-        console.log(checkLimit);
+        const data = JSON.parse(window.localStorage.getItem("tasks"));
+        const numberOfTasks = data.filter(item => item.idColumn === columnId);
+        const taskLenght = numberOfTasks.length + 1;
 
-        
-
+        if(taskLenght > limitNumber){
+            return false // przydałyby sie informacja ze limit przekroczony
+        }
+        return true
     }
 
     function moveToNext(taskId,columnId){
-        checkNextLimit(columnId)
-        const newItem = tasks.map(item => {
-            if(item.id === taskId && columnId < 3){
-                return {...item, idColumn:item.idColumn + 1};
-            }
-            return item;
-        })
-        setTasks(newItem)
+        if(checkTaskLimit(columnId + 1)){
+            const newItem = tasks.map(item => {
+                if(item.id === taskId && columnId < 3){
+                    return {...item, idColumn:item.idColumn + 1};
+                }
+                return item;
+            })
+            setTasks(newItem)
+        }
     }
 
     function moveToPrev(taskId,columnId){
-        const newItem = tasks.map(item => {
-            if(item.id === taskId && columnId > 1 ){
-                return {...item, idColumn:item.idColumn - 1};
-            }
-            return item;
-        })
-        setTasks(newItem)
+        if(checkTaskLimit(columnId - 1)){
+            const newItem = tasks.map(item => {
+                if(item.id === taskId && columnId > 1 ){
+                    return {...item, idColumn:item.idColumn - 1};
+                }
+                return item;
+            })
+            setTasks(newItem)
+        }
     }
 
     function checkTaskLenght(){
@@ -89,7 +99,7 @@ const App = function() {
         else alert('Max limit TASK in TO DO list = 4');
     }
 
-    function removeTask(id){ // brak potwierdzenia czy chce usunac taska 
+    function removeTask(id){ // brak potwierdzenia czy chce usunac taska
         const data = JSON.parse(window.localStorage.getItem("tasks"));
         const updateTasks = data.filter(item => item.id !== id);
         setTasks(updateTasks)
