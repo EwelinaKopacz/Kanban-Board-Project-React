@@ -19,9 +19,6 @@ const App = function() {
         {id:1,taskName:'check Email', user:'Kamil',idColumn:1},
         {id:2,taskName:'send Mail', user:'Kasia',idColumn:2},
         {id:3,taskName:'call Customer', user:'Asia',idColumn:3},
-        {id:4,taskName:'check Email', user:'Kamil',idColumn:1},
-        {id:5,taskName:'check Email', user:'Kamil',idColumn:1},
-        {id:6,taskName:'check Email', user:'Kamil',idColumn:1},
     ])
 
     useEffect(()=> {
