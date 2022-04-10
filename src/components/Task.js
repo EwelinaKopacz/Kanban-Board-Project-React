@@ -19,7 +19,7 @@ const Task = function(props){
             <p className='task__user'>Responsible: {user} </p>
             <button type='button' className='task__move' onClick={() => moveToPrevFn(id,idColumn)}> Move to Prev </button>
             <button type='button' className='task__move' onClick={() => moveToNextFn(id,idColumn)}> Move to Next </button>
-            <div className='button_box'>
+            <div className='button__box'>
                 <button type='button' className='task__remove'onClick={() => removeTaskFn(id)}> Remove </button>
             </div>
         </div>

@@ -129,6 +129,7 @@ const App = function() {
                     </TaskContext.Provider>
                 </ColumnContext.Provider>
             }
+            title='React Kanban'
         />
     );
 }
