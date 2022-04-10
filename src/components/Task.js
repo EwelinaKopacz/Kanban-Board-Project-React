@@ -27,11 +27,12 @@ const Task = function(props){
 }
 
 Task.propTypes = {
-    // task:PropTypes.element.isRequired,
-    // taskName: PropTypes.string.,
-    // user: PropTypes.string.isRequired,
-    // id:PropTypes.number.isRequired,
-    // idColumn:PropTypes.number.isRequired,
+    task:PropTypes.shape({
+        taskName: PropTypes.string,
+        user: PropTypes.string,
+        id: PropTypes.number,
+        idColumn: PropTypes.number
+    }).isRequired,
 }
 
 export default Task;

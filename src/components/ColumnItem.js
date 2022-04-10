@@ -20,10 +20,11 @@ const ColumnItem = function(props) {
 }
 
 ColumnItem.propTypes = {
-    // column: PropTypes.node.isRequired,
-    // columnName: PropTypes.string.isRequired,
-    // limit: PropTypes.number.isRequired,
-    // children: PropTypes.node.isRequired
+    column:PropTypes.shape({
+        columnName: PropTypes.string,
+        limit: PropTypes.number
+    }).isRequired,
+    children: PropTypes.node.isRequired
 }
 
 export default ColumnItem;

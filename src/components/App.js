@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+/* eslint-disable no-undef */
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React, {useState,useEffect} from 'react';
 import {ColumnContext, TaskContext, FormContext} from '../context';
@@ -85,7 +87,7 @@ const App = function() {
         const largestId = data.map(item => item.id).sort((a,b)=> a-b)[data.length-1]
         const nextId = largestId +1;
 
-        // zakładam ze kady nowy task laduje na liste TO DO (czyli kolumna 1)
+        // zakładam ze kazdy nowy task ląduje na liste TO DO (czyli kolumna 1)
         const {taskName,user} = task;
         const newTask = {id:nextId,taskName,user,idColumn:1};
 
