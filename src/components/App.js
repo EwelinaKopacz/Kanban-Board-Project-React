@@ -44,7 +44,8 @@ const App = function() {
         const taskLenght = numberOfTasks.length + 1;
 
         if(taskLenght > limitNumber){
-            return false // przydałyby sie informacja ze limit przekroczony
+            alert('Check limit in column where you want to move task');
+            return false
         }
         return true
     }
@@ -84,10 +85,9 @@ const App = function() {
 
     function addNewTask(task){
         const data = JSON.parse(window.localStorage.getItem("tasks"));
-        const largestId = data.map(item => item.id).sort((a,b)=> a-b)[data.length-1]
+        const largestId = Math.max(...data.map(item => item.id), 0);
         const nextId = largestId +1;
 
-        // zakładam ze kazdy nowy task ląduje na liste TO DO (czyli kolumna 1)
         const {taskName,user} = task;
         const newTask = {id:nextId,taskName,user,idColumn:1};
 
@@ -95,7 +95,9 @@ const App = function() {
             data.push(newTask)
             setTasks(data)
         }
-        else alert('Max limit TASK in TO DO list = 4');
+        else {
+            alert('Max limit TASK in TO DO list = 4');
+        }
     }
 
     function removeTask(id){ // brak potwierdzenia czy chce usunac taska
@@ -116,21 +118,16 @@ const App = function() {
     }
 
     return (
-        <Board
-            left={
-                <FormContext.Provider value={formProviderValues}>
-                    <Form />
-                </FormContext.Provider>
-            }
-            right={
-                <ColumnContext.Provider value={columns}>
-                    <TaskContext.Provider value={taskProviderValues}>
-                        <Columns />
-                    </TaskContext.Provider>
-                </ColumnContext.Provider>
-            }
-            title='React Kanban'
-        />
+        <Board>
+            <FormContext.Provider value={formProviderValues}>
+                <Form />
+            </FormContext.Provider>
+            <ColumnContext.Provider value={columns}>
+                <TaskContext.Provider value={taskProviderValues}>
+                    <Columns />
+                </TaskContext.Provider>
+            </ColumnContext.Provider>
+        </Board>
     );
 }
 export default App;

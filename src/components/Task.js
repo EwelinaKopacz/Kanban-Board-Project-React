@@ -12,7 +12,6 @@ const Task = function(props){
     const moveToPrevFn = items.moveToPrev;
     const removeTaskFn = items.removeTask;
 
-    // tutaj tez mozna rozbić button na komponent
     return(
         <div className='task__container'>
             <p className='task__content'>Task: {taskName} </p>

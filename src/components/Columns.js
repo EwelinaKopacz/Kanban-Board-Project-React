@@ -9,7 +9,7 @@ const Columns = function() {
     const items = useContext(TaskContext)
     const listOfTask = items.tasks;
 
-    function checkTaskId(item){
+    function takeTasks(item){
         const {id}= item;
         return listOfTask.map(task => {
             if(task.idColumn === id){
@@ -25,7 +25,7 @@ const Columns = function() {
     function renderColumns(){
         return columns.map(item =>
             <ColumnItem column={item} key={item.id}>
-                {checkTaskId(item)}
+                {takeTasks(item)}
             </ColumnItem>
         )
     }
