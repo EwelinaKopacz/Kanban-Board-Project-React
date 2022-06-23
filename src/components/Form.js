@@ -1,6 +1,6 @@
 import React, {useState,useReducer,useContext} from 'react';
 import {FormContext} from '../context';
-import './styles.css';
+import '../css/form.css';
 
 const initialState = {
     taskName:'',

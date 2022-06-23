@@ -1,0 +1,52 @@
+.form__section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin:20px 5px;
+}
+
+.input__box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:5px 2px;
+    padding: 2px 5px;
+    min-width: 230px;
+}
+
+.input__task,.input__person {
+    border:none;
+    height: 20px;
+    padding:12px;
+    background-color: transparent;
+    border-bottom: 0.8px solid grey;
+}
+
+.input__task:focus{
+    border-color:red;
+}
+
+.form__confirm {
+    width:100%;
+    text-align: center;
+    font-weight: 400;
+    padding:5px 0px;
+}
+
+.button__submit{
+    border: none;
+    width: 100%;
+    min-height: 35px;
+    text-transform: uppercase;
+    margin:8px 0;
+    letter-spacing: 0.3px;
+    background-color: transparent;
+    border: 0.8px solid grey;
+    border-radius: 20px;
+}
+
+.button__submit:hover{
+    background-color: rgb(37, 41, 38);
+    color: white;
+}

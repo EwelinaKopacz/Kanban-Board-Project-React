@@ -2,7 +2,7 @@ import React,{ useContext} from 'react';
 import {ColumnContext,TaskContext} from '../context';
 import ColumnItem from './ColumnItem';
 import Task from './Task';
-import './styles.css'
+import '../css/columns.css';
 
 const Columns = function() {
     const columns = useContext(ColumnContext)
@@ -24,7 +24,7 @@ const Columns = function() {
 
     function renderColumns(){
         return columns.map(item =>
-            <ColumnItem column={item} key={item.id}>
+            <ColumnItem column={item} key={item.id} className={item.class}>
                 {takeTasks(item)}
             </ColumnItem>
         )

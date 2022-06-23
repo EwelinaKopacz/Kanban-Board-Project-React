@@ -1,17 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './styles.css';
+import '../css/board.css';
 
 const Board = function(props) {
     const {children} = props;
+    const [form,columns] = children;
     return (
         <section className="board__container">
-            <h1 className='board__header'>React Kanban</h1>
+            <div className="board__title">
+                <h1 className='board__header'>Kanban Board</h1>
+            </div>
             <div className="board__leftSide">
-                {children[0]}
+                {form}
             </div>
             <div className="board__rightSide">
-                {children[1]}
+                {columns}
             </div>
         </section>
     );

@@ -1,0 +1,20 @@
+[
+    {
+        "id":1,
+        "columnName":"to do",
+        "limit": 4,
+        "class":"todo"
+    },
+    {
+        "id":2,
+        "columnName":"doing",
+        "limit": 6,
+        "class":"doing"
+    },
+    {
+        "id":3,
+        "columnName":"done",
+        "limit": 4,
+        "class":"done"
+    }
+]

@@ -6,16 +6,10 @@ import {ColumnContext, TaskContext, FormContext} from '../context';
 import Board from './Board';
 import Form from './Form';
 import Columns from './Columns'
-
-import './styles.css';
+import columns from "../../data/columns.json";
+import '../css/global.css';
 
 const App = function() {
-
-    const columns = ([
-        {id:1, columnName:'TO DO', limit: 4},
-        {id:2, columnName:'DOING', limit: 2},
-        {id:3, columnName:'DONE', limit: 3},
-    ])
 
     const [tasks,setTasks] = useState ([
         {id:1,taskName:'check Email', user:'Kamil',idColumn:1},
@@ -24,7 +18,7 @@ const App = function() {
     ])
 
     useEffect(()=> {
-        const data = window.localStorage.getItem("tasks");
+        const data = window.localStorage.getItem("tasks"); // powtorzenie
         if(data){
             setTasks(JSON.parse(data));
         }
@@ -32,14 +26,14 @@ const App = function() {
     },[])
 
     useEffect(()=> {
-        window.localStorage.setItem('tasks', JSON.stringify(tasks));
+        window.localStorage.setItem('tasks', JSON.stringify(tasks)); // powtorzenie
     },[tasks])
 
     function checkTaskLimit(columnId){
         const checkLimit = columns.filter(item => item.id === columnId).map(item => item.limit);
         const limitNumber = checkLimit[0]
 
-        const data = JSON.parse(window.localStorage.getItem("tasks"));
+        const data = JSON.parse(window.localStorage.getItem("tasks")); // powtorzenie
         const numberOfTasks = data.filter(item => item.idColumn === columnId);
         const taskLenght = numberOfTasks.length + 1;
 
@@ -75,7 +69,7 @@ const App = function() {
     }
 
     function checkTaskLenght(){
-        const data = JSON.parse(window.localStorage.getItem("tasks"));
+        const data = JSON.parse(window.localStorage.getItem("tasks")); // powtorzenie
         const column1Lenght = data.filter(item => item.idColumn === 1);
         if(column1Lenght.length < 4){
             return true
@@ -84,7 +78,7 @@ const App = function() {
     }
 
     function addNewTask(task){
-        const data = JSON.parse(window.localStorage.getItem("tasks"));
+        const data = JSON.parse(window.localStorage.getItem("tasks")); // powtorzenie
         const largestId = Math.max(...data.map(item => item.id), 0);
         const nextId = largestId +1;
 
@@ -101,7 +95,7 @@ const App = function() {
     }
 
     function removeTask(id){ // brak potwierdzenia czy chce usunac taska
-        const data = JSON.parse(window.localStorage.getItem("tasks"));
+        const data = JSON.parse(window.localStorage.getItem("tasks")); // powtorzenie 
         const updateTasks = data.filter(item => item.id !== id);
         setTasks(updateTasks)
     }

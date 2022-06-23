@@ -1,7 +1,9 @@
+/* eslint-disable no-else-return */
+/* eslint-disable arrow-body-style */
 import React,{useContext} from 'react';
 import PropTypes from 'prop-types';
 import {TaskContext} from '../context';
-import './styles.css'
+import '../css/columns.css';
 
 const Task = function(props){
     const {task} = props;
@@ -12,14 +14,31 @@ const Task = function(props){
     const moveToPrevFn = items.moveToPrev;
     const removeTaskFn = items.removeTask;
 
+    const renderButton = (idCol) => {
+        if(idCol === 1){
+            return <button type='button' className='task__move' onClick={() => moveToNextFn(id,idColumn)}> &#8594; </button>
+        }
+        else if(idCol === 3){
+            return <button type='button' className='task__move' onClick={() => moveToPrevFn(id,idColumn)}> &#8592; </button>
+        }
+        else {
+            return (
+                <>
+                    <button type='button' className='task__move' onClick={() => moveToPrevFn(id,idColumn)}> &#8592; </button>
+                    <button type='button' className='task__move' onClick={() => moveToNextFn(id,idColumn)}> &#8594; </button>
+                </>
+            )
+        }
+
+    }
+
     return(
         <div className='task__container'>
-            <p className='task__content'>Task: {taskName} </p>
-            <p className='task__user'>Responsible: {user} </p>
-            <button type='button' className='task__move' onClick={() => moveToPrevFn(id,idColumn)}> Move to Prev </button>
-            <button type='button' className='task__move' onClick={() => moveToNextFn(id,idColumn)}> Move to Next </button>
-            <div className='button__box'>
-                <button type='button' className='task__remove'onClick={() => removeTaskFn(id)}> Remove </button>
+            <p className='task__name task__content'>{taskName} </p>
+            <p className='task__user task__content'>{user} </p>
+            <div className='button__container'>
+                {renderButton(idColumn)}
+                <button type='button' className='task__remove'onClick={() => removeTaskFn(id)}> &times;</button>
             </div>
         </div>
     )
