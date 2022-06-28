@@ -24,7 +24,7 @@ const Columns = function() {
 
     function renderColumns(){
         return columns.map(item =>
-            <ColumnItem column={item} key={item.id} className={item.class}>
+            <ColumnItem column={item} key={item.id} className={item.class} classIcon={item.classIcon}>
                 {takeTasks(item)}
             </ColumnItem>
         )

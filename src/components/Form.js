@@ -1,5 +1,6 @@
 import React, {useState,useReducer,useContext} from 'react';
 import {FormContext} from '../context';
+import Confirmation from './Confirmation';
 import '../css/form.css';
 
 const initialState = {
@@ -53,7 +54,7 @@ const Form = function () {
         <div className="form__section">
             <h2>Add task</h2>
             <form className='form__container'>
-                {isValid ? <div className='form__confirm'>Task was added!</div>: null}
+                {isValid ? <Confirmation/>: null}
                 <div className='input__box'>
                     <label htmlFor="task-id" > Task: </label>
                     <input id="task-id" type='text' className='input__task' name="taskName" value={taskName} onChange={handleChange}/>

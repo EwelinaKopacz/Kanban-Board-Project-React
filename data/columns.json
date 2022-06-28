@@ -3,18 +3,21 @@
         "id":1,
         "columnName":"to do",
         "limit": 4,
-        "class":"todo"
+        "class":"todo",
+        "classIcon":"fa-solid fa-trowel"
     },
     {
         "id":2,
         "columnName":"doing",
         "limit": 6,
-        "class":"doing"
+        "class":"doing",
+        "classIcon":"fa-solid fa-trowel-bricks"
     },
     {
         "id":3,
         "columnName":"done",
         "limit": 4,
-        "class":"done"
+        "class":"done",
+        "classIcon":"fa-solid fa-building-circle-check"
     }
 ]
