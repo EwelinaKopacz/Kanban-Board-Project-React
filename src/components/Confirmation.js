@@ -7,9 +7,6 @@ const Confirmation = () => {
 
     useEffect(()=>{
         setShow(true)
-    },[])
-
-    useEffect(()=>{
         const intervalID = setTimeout(()=>{
             setShow(false)
         },5000)
@@ -29,7 +26,6 @@ const Confirmation = () => {
         }
         return null;
     }
-
 
     return (
         showMessage()
