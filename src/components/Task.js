@@ -42,10 +42,6 @@ const Task = function(props){
         if(value === true){
             removeTaskFn(id)
         }
-        if (value === false){
-            setClickDelete(false)
-        }
-        return false
     }
 
     return(
