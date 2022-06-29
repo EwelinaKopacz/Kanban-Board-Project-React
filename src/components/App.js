@@ -88,10 +88,10 @@ const App = function() {
         if(checkTaskLenght()){
             data.push(newTask)
             setTasks(data)
+            return true;
         }
-        else {
-            alert('Max limit TASK in TO DO list = 4');
-        }
+        alert('Max limit TASK in TO DO list = 4');
+        return false;
     }
 
     function removeTask(id){ // brak potwierdzenia czy chce usunac taska
@@ -99,6 +99,7 @@ const App = function() {
         const updateTasks = data.filter(item => item.id !== id);
         setTasks(updateTasks)
     }
+
 
     const taskProviderValues = {
         tasks,

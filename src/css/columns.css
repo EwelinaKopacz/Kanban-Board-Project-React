@@ -43,6 +43,7 @@
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border-right: 3px solid rgb(146, 154, 159) ;
     border-radius: 20px;
+    position: relative;
 }
 
 .todo .task__container {
@@ -79,6 +80,7 @@
     display: flex;
     justify-content: flex-start;
     margin-top: 20px;
+    
 }
 
 .task__move{

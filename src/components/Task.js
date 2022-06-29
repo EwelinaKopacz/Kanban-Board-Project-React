@@ -1,13 +1,15 @@
 /* eslint-disable no-else-return */
 /* eslint-disable arrow-body-style */
-import React,{useContext} from 'react';
+import React,{useContext,useState} from 'react';
 import PropTypes from 'prop-types';
 import {TaskContext} from '../context';
+import ConfirmDeleteTask from './ConfirmDeleteTask';
 import '../css/columns.css';
 
 const Task = function(props){
     const {task} = props;
     const {taskName,user,id,idColumn} = task;
+    const [clickDelete, setClickDelete] = useState(false);
 
     const items = useContext(TaskContext)
     const moveToNextFn = items.moveToNext;
@@ -32,13 +34,27 @@ const Task = function(props){
 
     }
 
+    const handleDelete = () =>{
+        setClickDelete(!clickDelete)
+    }
+
+    const confirmDelete = (value) =>{
+        if(value === true){
+            removeTaskFn(id)
+        }
+        if (value === false){
+            setClickDelete(false)
+        }
+        return false
+    }
+
     return(
         <div className='task__container'>
             <p className='task__name task__content'>{taskName} </p>
             <p className='task__user task__content'>{user} </p>
             <div className='button__container'>
                 {renderButton(idColumn)}
-                <button type='button' className='task__remove'onClick={() => removeTaskFn(id)}> &times;</button>
+                <button type='button' className='task__remove' onClick={()=>handleDelete()}>{clickDelete ? <ConfirmDeleteTask confirmDelete={confirmDelete}/> : "x"}</button>
             </div>
         </div>
     )

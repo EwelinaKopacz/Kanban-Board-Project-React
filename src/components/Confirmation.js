@@ -1,22 +1,18 @@
-import React,{useState,useEffect} from 'react';
+import React,{useEffect} from 'react';
 import '../css/form.css';
 
-const Confirmation = () => {
-    const [show, setShow] = useState(null);
-    console.log(show);
+const Confirmation = (props) => {
+    const {show,changeIsValid} = props;
 
     useEffect(()=>{
-        setShow(true)
         const intervalID = setTimeout(()=>{
-            setShow(false)
+            changeIsValid()
         },5000)
-
 
         return ()=>{
             clearTimeout(intervalID)
         }
     },[]);
-
 
     const showMessage =()=> {
         if(show === true){
@@ -24,7 +20,7 @@ const Confirmation = () => {
                 <div className='form__confirm'>Task was added!</div>
             )
         }
-        return null;
+        return false;
     }
 
     return (

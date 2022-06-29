@@ -1,0 +1,30 @@
+.delete__container {
+    width: 250px;
+    min-height: 130px;
+    left: -1.2%;
+    top: 0%;
+    background-color: white;
+    position: absolute;
+    border-radius: 20px;
+    padding:10px;
+}
+
+.delete__text {
+    color: black;
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+.delete__btns {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top:20px;
+}
+
+.delete__btn {
+    width: 30%;
+    height: auto;
+
+}
+
