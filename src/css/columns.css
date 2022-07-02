@@ -80,7 +80,6 @@
     display: flex;
     justify-content: flex-start;
     margin-top: 20px;
-    
 }
 
 .task__move{
@@ -88,7 +87,7 @@
     border-radius: 20px;
     background-color: transparent;
     padding: 5px;
-    width: 50px; 
+    width: 50px;
     margin: 5px;
 }
 

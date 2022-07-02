@@ -10,8 +10,8 @@ const ConfirmDeleteTask = ({confirmDelete}) => {
         <div className='delete__container'>
             <p className='delete__text'>Are you sure?</p>
             <div className='delete__btns'>
-                <button type='button' className='delete__btn'onClick={()=>confirmDelete(true)}>YES</button>
-                <button type='button' className='delete__btn'onClick={()=>confirmDelete(false)}>NO</button>
+                <button type='button' className='delete__btn' onClick={()=>confirmDelete(true)}>YES</button>
+                <button type='button' className='delete__btn' onClick={()=>confirmDelete(false)}>NO</button>
             </div>
         </div>
     )

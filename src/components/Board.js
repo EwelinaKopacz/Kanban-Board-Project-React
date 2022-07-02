@@ -4,7 +4,7 @@ import '../css/board.css';
 
 const Board = function(props) {
     const {children} = props;
-    const [form,columns] = children;
+    const [alert,form,columns] = children;
     return (
         <section className="board__container">
             <div className="board__title">
@@ -14,6 +14,7 @@ const Board = function(props) {
                 {form}
             </div>
             <div className="board__rightSide">
+                {alert}
                 {columns}
             </div>
         </section>

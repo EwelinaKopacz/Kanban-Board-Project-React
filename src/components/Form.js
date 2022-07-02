@@ -1,4 +1,5 @@
 import React, {useState,useReducer,useContext} from 'react';
+import PropTypes from 'prop-types';
 import {FormContext} from '../context';
 import Confirmation from './Confirmation';
 import '../css/form.css';
@@ -16,13 +17,14 @@ const reducer = (state,action) => {
     return {...state, [type]:value}
 }
 
-const Form = function () {
+const Form = function (props) {
 
     const [state, dispatch] = useReducer(reducer,initialState);
     const [isValid, setIsValid] = useState(false);
     const {taskName, user} = state;
     const item = useContext(FormContext);
     const {addNewTask} = item
+    const {alert} = props;
 
     function handleChange(e) {
         const action = {
@@ -53,6 +55,7 @@ const Form = function () {
 
     return (
         <div className="form__section">
+            {alert}
             <h2>Add task</h2>
             <form className='form__container'>
                 {isValid ? <Confirmation show={isValid} changeIsValid={()=>setIsValid(false)}/>: null}
@@ -75,3 +78,11 @@ const Form = function () {
 }
 
 export default Form;
+
+Form.propTypes = {
+    alert:PropTypes.node
+}
+
+Form.defaultProps = {
+    alert: ''
+}

@@ -6,6 +6,7 @@ import {ColumnContext, TaskContext, FormContext} from '../context';
 import Board from './Board';
 import Form from './Form';
 import Columns from './Columns'
+import Alert from './Alert';
 import columns from "../../data/columns.json";
 import '../css/global.css';
 
@@ -16,6 +17,9 @@ const App = function() {
         {id:2,taskName:'send Mail', user:'Kasia',idColumn:2},
         {id:3,taskName:'call Customer', user:'Asia',idColumn:3},
     ])
+
+    const [limitColumn, setLimitColumn] = useState(false);
+    const [limitFirstColumn, setLimitFirstColumn] = useState(false);
 
     useEffect(()=> {
         const data = window.localStorage.getItem("tasks"); // powtorzenie
@@ -38,10 +42,10 @@ const App = function() {
         const taskLenght = numberOfTasks.length + 1;
 
         if(taskLenght > limitNumber){
-            alert('Check limit in column where you want to move task');
-            return false
+            setLimitColumn(true);
+            return false;
         }
-        return true
+        return true;
     }
 
     function moveToNext(taskId,columnId){
@@ -90,16 +94,19 @@ const App = function() {
             setTasks(data)
             return true;
         }
-        alert('Max limit TASK in TO DO list = 4');
+        setLimitFirstColumn(true);
         return false;
     }
 
-    function removeTask(id){ // brak potwierdzenia czy chce usunac taska
-        const data = JSON.parse(window.localStorage.getItem("tasks")); // powtorzenie 
+    function removeTask(id){
+        const data = JSON.parse(window.localStorage.getItem("tasks")); // powtorzenie
         const updateTasks = data.filter(item => item.id !== id);
         setTasks(updateTasks)
     }
 
+    const closeAlertColumns = (value) => setLimitColumn(value)
+
+    const closeAlertFirstColumn = (value) => setLimitFirstColumn(value)
 
     const taskProviderValues = {
         tasks,
@@ -114,7 +121,9 @@ const App = function() {
 
     return (
         <Board>
+            {limitColumn ? <Alert text="Check the limit in column where you want to move a task." closeAlert={closeAlertColumns}/> : null }
             <FormContext.Provider value={formProviderValues}>
+                {limitFirstColumn ? <Alert text="The limit in column TODO - max 4." closeAlert={closeAlertFirstColumn}/> : null }
                 <Form />
             </FormContext.Provider>
             <ColumnContext.Provider value={columns}>
