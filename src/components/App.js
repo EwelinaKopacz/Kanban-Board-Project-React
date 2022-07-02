@@ -8,16 +8,12 @@ import Form from './Form';
 import Columns from './Columns'
 import Alert from './Alert';
 import columns from "../../data/columns.json";
+import initTasksList from "../../data/initTasksList.json";
 import '../css/global.css';
 
 const App = function() {
 
-    const [tasks,setTasks] = useState ([
-        {id:1,taskName:'check Email', user:'Kamil',idColumn:1},
-        {id:2,taskName:'send Mail', user:'Kasia',idColumn:2},
-        {id:3,taskName:'call Customer', user:'Asia',idColumn:3},
-    ])
-
+    const [tasks,setTasks] = useState(initTasksList)
     const [limitColumn, setLimitColumn] = useState(false);
     const [limitFirstColumn, setLimitFirstColumn] = useState(false);
 

@@ -9,14 +9,14 @@
     {
         "id":2,
         "columnName":"doing",
-        "limit": 6,
+        "limit": 4,
         "class":"doing",
         "classIcon":"fa-solid fa-trowel-bricks"
     },
     {
         "id":3,
         "columnName":"done",
-        "limit": 4,
+        "limit": 6,
         "class":"done",
         "classIcon":"fa-solid fa-building-circle-check"
     }
