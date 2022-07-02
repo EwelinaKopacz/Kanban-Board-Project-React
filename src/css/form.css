@@ -45,6 +45,7 @@
     background-color: transparent;
     border: 0.8px solid grey;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 .button__submit:hover{
