@@ -21,11 +21,10 @@ I have used localStorage to store a data. After first rendering, application che
 
 ```
 useEffect(()=> {
-        const data = window.localStorage.getItem("tasks"); // powtorzenie
+        const data = window.localStorage.getItem("tasks");
         if(data){
             setTasks(JSON.parse(data));
         }
-        else setTasks(tasks)
     },[])
 
 ```
