@@ -15,7 +15,7 @@ Form features:
 Columns features:
 * a user can move tasks between columns using buttons with arrows
 * every column has a limit of tasks, if tasks limit will be exhausted, user will see an alert, and a task will not be moved
-* •	a user can remove a task, and confirmation alert will be dispplayed to proceed with it or not 
+* a user can remove a task, and confirmation alert will be dispplayed to proceed with it or not 
 
 I have used localStorage to store a data. After first rendering, application checks if there are any values in localStorage to loaded, if not, initial values are added to the localStorage.
 

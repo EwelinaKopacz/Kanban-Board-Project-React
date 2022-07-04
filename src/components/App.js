@@ -1,40 +1,26 @@
 /* eslint-disable no-alert */
 /* eslint-disable no-undef */
 /* eslint-disable react/jsx-no-constructed-context-values */
-import React, {useState,useEffect} from 'react';
+import React, {useState} from 'react';
 import {ColumnContext, TaskContext, FormContext} from '../context';
 import Board from './Board';
 import Form from './Form';
 import Columns from './Columns'
 import Alert from './Alert';
+import useTasksStorage from './useTasksStorage';
 import columns from "../../data/columns.json";
 import initTasksList from "../../data/initTasksList.json";
 import '../css/global.css';
 
 const App = function() {
-
-    const [tasks,setTasks] = useState(initTasksList)
+    const [tasks, setTasks] = useTasksStorage(initTasksList);
     const [limitColumn, setLimitColumn] = useState(false);
     const [limitFirstColumn, setLimitFirstColumn] = useState(false);
-
-    useEffect(()=> {
-        const data = window.localStorage.getItem("tasks"); // powtorzenie
-        if(data){
-            setTasks(JSON.parse(data));
-        }
-        else setTasks(tasks)
-    },[])
-
-    useEffect(()=> {
-        window.localStorage.setItem('tasks', JSON.stringify(tasks)); // powtorzenie
-    },[tasks])
 
     function checkTaskLimit(columnId){
         const checkLimit = columns.filter(item => item.id === columnId).map(item => item.limit);
         const limitNumber = checkLimit[0]
-
-        const data = JSON.parse(window.localStorage.getItem("tasks")); // powtorzenie
-        const numberOfTasks = data.filter(item => item.idColumn === columnId);
+        const numberOfTasks = tasks.filter(item => item.idColumn === columnId);
         const taskLenght = numberOfTasks.length + 1;
 
         if(taskLenght > limitNumber){
@@ -69,8 +55,7 @@ const App = function() {
     }
 
     function checkTaskLenght(){
-        const data = JSON.parse(window.localStorage.getItem("tasks")); // powtorzenie
-        const column1Lenght = data.filter(item => item.idColumn === 1);
+        const column1Lenght = tasks.filter(item => item.idColumn === 1);
         if(column1Lenght.length < 4){
             return true
         }
@@ -78,16 +63,14 @@ const App = function() {
     }
 
     function addNewTask(task){
-        const data = JSON.parse(window.localStorage.getItem("tasks")); // powtorzenie
-        const largestId = Math.max(...data.map(item => item.id), 0);
+        const largestId = Math.max(...tasks.map(item => item.id), 0);
         const nextId = largestId +1;
 
         const {taskName,user} = task;
         const newTask = {id:nextId,taskName,user,idColumn:1};
 
         if(checkTaskLenght()){
-            data.push(newTask)
-            setTasks(data)
+            setTasks([...tasks, newTask])
             return true;
         }
         setLimitFirstColumn(true);
@@ -95,8 +78,7 @@ const App = function() {
     }
 
     function removeTask(id){
-        const data = JSON.parse(window.localStorage.getItem("tasks")); // powtorzenie
-        const updateTasks = data.filter(item => item.id !== id);
+        const updateTasks = tasks.filter(item => item.id !== id);
         setTasks(updateTasks)
     }
 
