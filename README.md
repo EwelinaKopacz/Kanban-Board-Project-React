@@ -1,23 +1,23 @@
 # Kanban Board - React
 
 ## About the project:
-The aim of the project was to create application "Kanban Board" to manage tasks. My "Kanban Board" application has a form to add new tasks and consist with three columns:
+The aim of the project was to create application "Kanban Board" to manage tasks. Application has a feature, which allowes to add new tasks by using a form to add new tasks and it is consisted with three columns:
 * TO DO
 * DOING
 * DONE
 
 Form features:
-* user can add a new task by form
-* when a task is added, user will see a confirmation, which disappear after 5 second
+* user can add a new task by using a form
+* when a task is added, user will see a confirmation of it, which disappears after 5 seconds
 * every a new task is added to the first column "TODO"
-* the first column has a limit (4 tasks), so if the limit will be achieved, user will see an alert, and a new task will not be added
+* the first column has a limit of 4 tasks, so if the limit will be exhausted, a user will see an alert, and a new task will not be added
 
 Columns features:
-* user can move tasks between columns using button with arrows
-* every column has a limit, if tasks limit will be achieved, user will see an alert, and a task will not be moved
-* user can remove task, before removing confirmation will be displaying
+* a user can move tasks between columns using buttons with arrows
+* every column has a limit of tasks, if tasks limit will be exhausted, user will see an alert, and a task will not be moved
+* •	a user can remove a task, and confirmation alert will be dispplayed to proceed with it or not 
 
-To storage a data I have used localStorage. After first rendering, application checking if there are any values in localStorage to loaded, if not, initial values are added to the localStorage.
+I have used localStorage to store a data. After first rendering, application checks if there are any values in localStorage to loaded, if not, initial values are added to the localStorage.
 
 ```
 useEffect(()=> {
@@ -30,7 +30,7 @@ useEffect(()=> {
 
 ```
 
-Informations about default tasks (loaded when localStorage is empty) and columns are storage in json file, so it is easy to manage it, change the value like task limit in column or name of the column. Every changed is state is saving/updating in localStorage.
+Informations about default tasks (loaded when localStorage is empty) and columns are storaged in json file, so it is easy to manage it, such as change the value for example task limit in column or name of the column.
 
 ```
 columns.json
@@ -48,17 +48,17 @@ columns.json
 ]
 ```
 
-The application consist with 9 components:
-1. ```<App/>``` - main component, there is a state, functions, which are transferred to the children components via Context API.
-2. ```<Board/>``` - component which render a form and columns
-3. ```<Columns/>``` - component which render ```<ColumnsItem/>``` and ```<Task/>``` components
-4. ```<Form/>``` - component which render a form
-5. ```<Confirmation/>``` - component which confirmation when task was added
-6. ```<ConfirmDeleteTask>``` - component which render pop up when user want to remove a task
-7. ```<Alert>``` - component which render an alert when the limit in columns was achieved
+The application consists with 9 components:
+1. ```<App/>``` - the main component, there is a state, functions, which are transferred to the children components via Context API.
+2. ```<Board/>``` - the component which renders a form and columns
+3. ```<Columns/>``` - the component which renders ```<ColumnsItem/>``` and ```<Task/>``` components
+4. ```<Form/>``` - the component which render a form
+5. ```<Confirmation/>``` - the component which confirms when a task was added
+6. ```<ConfirmDeleteTask>``` - component which renders a pop up when user want to remove a task
+7. ```<Alert>``` - the component which render an alert when the limit in columns was exhausted
 
 ## How to see it
-I have prepared a short video, to show how my application works. Please click the link below. You can check the screenshots, which are attached below, also.
+I have prepared a short video, to show how my application works. Please click the link below. You can check the screenshots, which are attached below, as well.
 * [Kanban Board - React | Ewelina Kopacz](https://www.awesomescreenshot.com/video/9768573?key=a13cc2551935f5b52d5250828a2df5aa
 )
 
