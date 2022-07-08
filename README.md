@@ -1,18 +1,29 @@
 # Kanban Board - React
 
-## About the project:
+# Table of Contents
+1. [About the project](#about-the-project)
+2. [How to see it](#how-to-see-it)
+3. [Technologies](#technologies)
+4. [Solutions](#solutions)
+5. [Development](#development)
+6. [Project preview](#project-preview)
+7. [Contact](#feel-free-to-contact-me)
+8. [Sources](#sources)
+9. [Thanks](#thanks-for-project-and-support-to-Mateusz-Bogolubow)
+
+## About the project
 The aim of the project was to create application "Kanban Board" to manage tasks. Application has a feature, which allowes to add new tasks by using a form to add new tasks and it is consisted with three columns:
 * TO DO
 * DOING
 * DONE
 
-Form features:
+####  Form features:
 * user can add a new task by using a form
 * when a task is added, user will see a confirmation of it, which disappears after 5 seconds
 * every a new task is added to the first column "TODO"
 * the first column has a limit of 4 tasks, so if the limit will be exhausted, a user will see an alert, and a new task will not be added
 
-Columns features:
+#### Columns features:
 * a user can move tasks between columns using buttons with arrows
 * every column has a limit of tasks, if tasks limit will be exhausted, user will see an alert, and a task will not be moved
 * a user can remove a task, and confirmation alert will be dispplayed to proceed with it or not 
@@ -47,7 +58,7 @@ columns.json
 ]
 ```
 
-The application consists with 9 components:
+#### The application consists with 9 components:
 1. ```<App/>``` - the main component, there is a state, functions, which are transferred to the children components via Context API.
 2. ```<Board/>``` - the component which renders a form and columns
 3. ```<Columns/>``` - the component which renders ```<ColumnsItem/>``` and ```<Task/>``` components
