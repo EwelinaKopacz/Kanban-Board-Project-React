@@ -1,6 +1,6 @@
 # Kanban Board - React
 
-# Table of Contents
+## Table of Contents
 1. [About the project](#about-the-project)
 2. [How to see it](#how-to-see-it)
 3. [Technologies](#technologies)
